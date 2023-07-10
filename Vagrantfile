@@ -9,9 +9,10 @@ Vagrant.configure("2") do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
-  config.ssh.insert_key = false
+ # config.ssh.insert_key = false
   config.vm.define "vagrant1" do |vagrant1|
     vagrant1.vm.box = "eurolinux-vagrant/centos-stream-9"
+    vagrant1.vm.hostname = "controller"
     vagrant1.vm.network "private_network", ip: "192.168.122.101"
     vagrant1.vm.network "private_network", ip: "192.168.123.101"
     vagrant1.vm.provider :libvirt do |domain|
@@ -24,6 +25,7 @@ Vagrant.configure("2") do |config|
   end
   config.vm.define "vagrant2" do |vagrant2|
     vagrant2.vm.box = "eurolinux-vagrant/centos-stream-9"
+    vagrant1.vm.hostname = "network"
     vagrant2.vm.network "private_network", ip: "192.168.122.102"
     vagrant2.vm.network "private_network", ip: "192.168.123.102"
     vagrant2.vm.provider :libvirt do |domain|
@@ -34,6 +36,7 @@ Vagrant.configure("2") do |config|
   end
   config.vm.define "vagrant3" do |vagrant3|
     vagrant3.vm.box = "eurolinux-vagrant/centos-stream-9"
+    vagrant1.vm.hostname = "compute"
     vagrant3.vm.network "private_network", ip: "192.168.122.103"
     vagrant3.vm.network "private_network", ip: "192.168.123.103"
     vagrant3.vm.provider :libvirt do |domain|
