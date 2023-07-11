@@ -2,8 +2,13 @@
   hosts: controller
   become: True
   tasks:
-    - name: Instalar paquetes de openstack
-      package: name=centos-release-openstack-yoga update_cache=yes
+    - name: Habilitar repositorio crb
+      ansible.builtin.dnf:
+        name: centos-release-openstack-yoga
+        enablerepo: crb
+        state: present        
+ #   - name: Instalar paquetes de openstack
+ #     package: name=centos-release-openstack-yoga update_cache=yes
     - name: Actualizar paquetes
       ansible.builtin.dnf:
         name: "*"
