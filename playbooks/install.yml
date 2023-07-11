@@ -18,3 +18,8 @@
         name: openstack-packstack
         enablerepo: crb
         state: present
+    - name: Copiar archivo de configuracion
+      copy:
+        src: answer-file.txt
+        dest: /home/vagrant/
+
