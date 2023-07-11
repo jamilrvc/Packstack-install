@@ -1,4 +1,4 @@
-- name: Configure webserver with nginx
+- name: Configure controller
   hosts: controller
   become: True
   tasks:
@@ -13,3 +13,8 @@
       ansible.builtin.dnf:
         name: "*"
         state: latest
+    - name: Instalar packstack
+      ansible.builtin.dnf:
+        name: openstack-packstack
+        enablerepo: crb
+        state: present
