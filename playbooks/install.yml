@@ -1,0 +1,10 @@
+- name: Configure webserver with nginx
+  hosts: controller
+  become: True
+  tasks:
+    - name: Instalar paquetes de openstack
+      package: name=centos-release-openstack-yoga update_cache=yes
+    - name: Actualizar paquetes
+      ansible.builtin.dnf:
+        name: "*"
+        state: latest

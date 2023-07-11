@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
- # config.ssh.insert_key = false
+  config.ssh.insert_key = false
   config.vm.define "vagrant1" do |vagrant1|
     vagrant1.vm.box = "eurolinux-vagrant/centos-stream-9"
     vagrant1.vm.hostname = "controller"
