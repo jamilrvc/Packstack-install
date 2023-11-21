@@ -1,6 +1,9 @@
 - name: Configure controller
   hosts: controller
   become: True
+  vars:
+    key_dir: /home/vagrant/.ssh/
+    key_file: id_rsa.pub
   tasks:
     - name: Habilitar repositorio crb
       ansible.builtin.dnf:
@@ -22,4 +25,11 @@
       copy:
         src: answer-file.txt
         dest: /home/vagrant/
+    - name: Crear llaves ssh
+      user:
+        name: vagrant
+        generate_ssh_key: yes
+        ssh_key_bits: 2048
+        ssh_key_file: .ssh/id_rsa
+
 
